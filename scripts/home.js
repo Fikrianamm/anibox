@@ -1,5 +1,4 @@
 import { bannerCarouselItem, section } from './components/components.js';
-import { banner, trending } from './data.js'; //? hapus setelah mendapatkan data dari API
 import { initialSetup } from './index.js';
 
 initialSetup();
@@ -46,23 +45,42 @@ const setBannerCarouselItem = (banner) => {
 };
 
 //? ambil data dari API
-// const trending = ....
-// ....
+const baseUrl = "https://animeapi-askiahnur1.b4a.run"
+const sortEndpoint = ["trending","popularity","newest","top"] 
+
+const fetchAll = sortEndpoint.map(sort=>{
+  const endpoint = `/anime?sort=${sort}`
+  return fetch(baseUrl + endpoint).then(response=>response.json())
+})
+
+Promise.all(fetchAll)
+  .then(data=>{
+    const [trending,popularity,newest,top] = data
+  
+
+const banner = trending.slice(0, 5);
 
 setBannerCarouselItem(banner);
 
 const listSection = [
-  {
-    name: 'Trending',
-    data: trending, //? ganti dengan data yang sudah diambil
-  },
-  // tambahkan section lain
-  // {
-  //   name: 'Popular',
-  //   data: ...,
-  // },
-  // ...
-];
+    {
+      name: 'Trending',
+      data: trending, //? ganti dengan data yang sudah diambil
+    },
+    {
+      name: 'Popular',
+      data: popularity,
+    },
+    {
+      name: 'New Release',
+      data: newest,
+    },
+    {
+      name: 'Top N',
+      data: top,
+    },
+  ];
+
 
 // menampilkan data ke halaman HTML
 document.querySelector('main').innerHTML = listSection
@@ -87,3 +105,5 @@ listSection.forEach((item) => {
     document.getElementById(sectionName + '-container').scrollLeft += 1000;
   };
 });
+
+})
