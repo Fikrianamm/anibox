@@ -65,7 +65,7 @@ setBannerCarouselItem(banner);
 const listSection = [
     {
       name: 'Trending',
-      data: trending, //? ganti dengan data yang sudah diambil
+      data: trending,
     },
     {
       name: 'Popular',
