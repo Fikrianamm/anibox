@@ -5,9 +5,3 @@
 .hide-scroll-bar::-webkit-scrollbar {
   display: none;
 }
-p#description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-}

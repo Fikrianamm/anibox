@@ -50,7 +50,10 @@ fetch(`https://animeapi-askiahnur1.b4a.run/anime/${id}`)
   })
   .catch(err=>console.log(err))
 
-  showDesc.innerHTML = "Show More"
+  descriptionEl.style.display = "-webkit-box";
+  descriptionEl.style.webkitBoxOrient = "vertical";
+  descriptionEl.style.webkitLineClamp = "4";
+  descriptionEl.style.overflow = "hidden";
 
   showDesc.addEventListener("click",e=>{
     const currentValue = e.target.dataset.show
@@ -63,5 +66,4 @@ fetch(`https://animeapi-askiahnur1.b4a.run/anime/${id}`)
       showDesc.innerHTML = "Show More"
       descriptionEl.style.display = "-webkit-box"
     }
-    console.log(e.target.dataset);
   })
